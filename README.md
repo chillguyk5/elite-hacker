@@ -6,21 +6,41 @@ A collection of self-contained offensive security + reverse engineering skills f
 
 ## Install
 
-```bash
-# install the whole collection
-npx skills add <your-github>/elite-hacker
+### Any agent (Anthropic Agent Skills registry — Claude Code, Cursor, Cline, Windsurf, Gemini CLI, ...)
 
-# or install a single skill
-npx skills add <your-github>/elite-hacker --skill web-api-pentest
+```bash
+npx skills add chillguyk5/elite-hacker          # whole collection
+npx skills add chillguyk5/elite-hacker --skill web-api-pentest   # single skill
 ```
 
-### Claude Code (local)
+### Claude Code (local, no registry)
 
 Copy each skill directory from `skills/` into `~/.claude/skills/` (one dir per skill) so agent discovery picks them up. Re-sync anytime with:
 
 ```bash
 bash sync-to-claude.sh
 ```
+
+### Other CLIs and IDEs (packed distributions)
+
+The repo ships a packer that generates tool-specific layouts — each pack contains the same 23 skills plus `AGENTS.md`, `README.md`, `TOOLS.md`:
+
+```bash
+python tools/pack.py all          # → dist/{codex,cursor,copilot,gemini,cline,windsurf,aider}
+python tools/pack.py codex        # one target only (--out <dir> to relocate)
+```
+
+| Tool / IDE | Pack location | Layout |
+|------------|---------------|--------|
+| Codex CLI | `dist/codex` | `.codex/skills/<name>/SKILL.md` + `AGENTS.md` |
+| Cursor | `dist/cursor` | `.cursor/skills/<name>/SKILL.md` + `AGENTS.md` |
+| GitHub Copilot | `dist/copilot` | `.github/skills/<name>/SKILL.md` + `AGENTS.md` |
+| Gemini CLI | `dist/gemini` | `.gemini/skills/<name>/SKILL.md` + `AGENTS.md` |
+| Cline | `dist/cline` | `cline_docs/skills/<name>/SKILL.md` + `AGENTS.md` |
+| Windsurf | `dist/windsurf` | `.windsurf/skills/<name>/SKILL.md` + `AGENTS.md` |
+| aider | `dist/aider` | single `.aider.skills.md` (23 sections) + `AGENTS.md` |
+
+Copy the matching `dist/<tool>/` contents into the tool's home directory (e.g. `~/.codex/`, `~/.cursor/`, `.github/` at repo root, `~/.gemini/`). Verify the tool's current skill-path conventions when in doubt.
 
 ## Skills
 

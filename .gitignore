@@ -32,3 +32,6 @@ Thumbs.db
 .DS_Store
 
 # QA tooling (local scripts kept in repo working tree, not tracked)
+
+# Generated packs (rebuild with: python tools/pack.py all)
+dist/
