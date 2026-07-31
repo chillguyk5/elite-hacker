@@ -5,7 +5,8 @@ Source of truth: skills/<name>/SKILL.md (Anthropic Agent Skills layout).
 Outputs: dist/<tool>/ with skill files placed where each tool discovers them.
 
 Targets:
-  codex        Codex CLI (~/.codex/skills/<name>/SKILL.md) + AGENTS.md
+  codex        Codex CLI (~/.agents/skills/<name>/SKILL.md — verified on 0.145.0;
+               legacy ~/.codex/skills is plugin-only) + AGENTS.md
   cursor       Cursor (.cursor/skills/<name>/SKILL.md) + AGENTS.md
   copilot      GitHub Copilot (.github/skills/<name>/SKILL.md) + AGENTS.md
   gemini       Gemini CLI (~/.gemini/skills/<name>/SKILL.md) + AGENTS.md
@@ -24,7 +25,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKILLS = os.path.join(ROOT, "skills")
 
 DOTDIR = {
-    "codex": ".codex/skills",
+    "codex": ".agents/skills",
     "cursor": ".cursor/skills",
     "copilot": ".github/skills",
     "gemini": ".gemini/skills",

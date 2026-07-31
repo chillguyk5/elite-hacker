@@ -32,7 +32,7 @@ python tools/pack.py codex        # one target only (--out <dir> to relocate)
 
 | Tool / IDE | Pack location | Layout |
 |------------|---------------|--------|
-| Codex CLI | `dist/codex` | `.codex/skills/<name>/SKILL.md` + `AGENTS.md` |
+| Codex CLI | `dist/codex` | `.agents/skills/<name>/SKILL.md` (verified on 0.145.0) + `AGENTS.md` |
 | Cursor | `dist/cursor` | `.cursor/skills/<name>/SKILL.md` + `AGENTS.md` |
 | GitHub Copilot | `dist/copilot` | `.github/skills/<name>/SKILL.md` + `AGENTS.md` |
 | Gemini CLI | `dist/gemini` | `.gemini/skills/<name>/SKILL.md` + `AGENTS.md` |
@@ -40,7 +40,7 @@ python tools/pack.py codex        # one target only (--out <dir> to relocate)
 | Windsurf | `dist/windsurf` | `.windsurf/skills/<name>/SKILL.md` + `AGENTS.md` |
 | aider | `dist/aider` | single `.aider.skills.md` (23 sections) + `AGENTS.md` |
 
-Copy the matching `dist/<tool>/` contents into the tool's home directory (e.g. `~/.codex/`, `~/.cursor/`, `.github/` at repo root, `~/.gemini/`). Verify the tool's current skill-path conventions when in doubt.
+Copy the matching `dist/<tool>/` contents into the tool's home directory (e.g. `~/.agents/`, `~/.cursor/`, `.github/` at repo root, `~/.gemini/`). Verify the tool's current skill-path conventions when in doubt — Codex 0.145+ scans `~/.agents/skills` (not `~/.codex/skills`), and its default 2% skills context budget may hide skills on machines with many installed; raise `skills_context_budget` (root-level key in `~/.codex/config.toml`) if needed.
 
 ## Skills
 
