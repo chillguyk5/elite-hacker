@@ -1,0 +1,34 @@
+# Node modules (client-side RE tooling)
+node_modules/
+
+# Builds / dumps
+*.exe
+*.dll
+*.so
+*.bin
+*.pcap
+*.dump
+decompile/
+
+# Sample binaries / malware samples — keep OUT of the repo
+samples/
+malware/
+*.yar
+
+# Secrets / credentials
+*.pem
+*.pfx
+*.key
+.env
+*.env
+
+# Sandbox / lab artifacts
+lab/
+.anvil*
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
+
+# QA tooling (local scripts kept in repo working tree, not tracked)
