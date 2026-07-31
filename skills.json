@@ -1,7 +1,7 @@
 {
   "name": "elite-hacker",
   "version": "1.0.0",
-  "description": "Offensive security & reverse engineering skills for AI coding agents: RE (native/.NET/mobile/firmware/ELF/kernel/blockchain), pentest (web/API, AI agents, cloud, k8s), OSINT, game hacking, pcap forensics, lab setup. 23 skills, lab/authorized scope only.",
+  "description": "Offensive security & reverse engineering skills for AI coding agents: RE (native/.NET/mobile/firmware/ELF/kernel/blockchain), pentest (web/API, AI agents, cloud, k8s), OSINT, game hacking, pcap forensics, lab setup. 23 skills.",
   "author": "chillguyk5",
   "license": "MIT",
   "homepage": "https://github.com/chillguyk5/elite-hacker",

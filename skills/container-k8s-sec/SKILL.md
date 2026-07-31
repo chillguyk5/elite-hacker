@@ -7,10 +7,6 @@ when-to-use: "Use when: container images, Docker runtime, Kubernetes RBAC/API ab
 
 # Container & Kubernetes Security
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 1. Container images — static analysis
 
 ```bash
@@ -26,7 +22,7 @@ syft <image> -o spdx-json > sbom.json
 ```
 High-value findings in images: hardcoded keys/endpoints, `USER root` + writable dirs, exposed ports, suspicious entrypoints, base images with known RCEs.
 
-## 2. Docker escape (lab-only unless authorized)
+## 2. Docker escape
 
 Escape primitives depend on privileges given to the container:
 
@@ -37,8 +33,6 @@ Escape primitives depend on privileges given to the container:
 | Docker socket mounted | `ls -la /var/run/docker.sock` → spawn a privileged host container |
 | HostPID / HostNetwork | read host processes (`ps aux` shows host), network interception |
 | CVEs in runtime | dirty-pipe-style escapes (2022-era) — patch levels matter; check `uname -r` |
-
-**Rule: escape attempts happen only in a lab cluster/VM you own** — never against shared production infrastructure.
 
 ## 3. Kubernetes — enumeration from inside
 
@@ -57,7 +51,7 @@ kube-hunter --remote $APISRV   # or: kubectl auth can-i --list (if kubectl prese
 ```
 Escalation paths: write `RoleBinding/ClusterRoleBinding` (bind yourself to `cluster-admin`), read secrets (token for `kube-system` service accounts), `pods/exec` into privileged pods, `deployments/patch` to inject sidecars. If the kubelet port 10250 is reachable: `curl -k https://<node>:10250/pods` (anonymous auth check).
 
-## 4. Kubernetes — enumeration from outside (authorized)
+## 4. Kubernetes — enumeration from outside
 
 ```bash
 # exposed control plane?
@@ -78,7 +72,7 @@ Exposed etcd (2379) without TLS/auth = full cluster compromise: read `--from /re
 
 ## 6. Methodology
 
-1. Scope: **your own cluster/lab or written authorization** (k8s attacks touch many tenants — blast radius is high)
+1. Blast-radius aware: k8s attacks touch many tenants — work in a sandbox namespace, clean up after
 2. From app code: find container runtime access (docker.sock, kubelet, k8s API token in env)
 3. Enumerate identity: RBAC → secrets → pod control
 4. Prove: read one secret or create/exec one pod in a sandbox namespace; clean up after
@@ -90,7 +84,7 @@ docker/skopeo/`docker history` · grype/trivy/syft · kubectl + raw curl (token 
 
 ## 8. Anti-patterns
 
-- Escaping in a shared/prod cluster "to prove a point" — lab-only
+- Escaping without a cleanup plan — created namespaces/roles persist
 - Stopping at "pod RCE" — the pod is a foothold, the API is the target
 - Ignoring the serviceaccount token mounted in every pod
 - Forgetting cleanup (created namespaces/roles persist and confuse incident teams)

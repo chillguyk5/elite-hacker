@@ -7,10 +7,6 @@ when-to-use: "Use when: game targets — Cheat Engine scans, pointer/struct work
 
 # Game Hacking
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 1. Cheat Engine — value scanning
 ```
 1. Attach CE → 2. Pick type (4B/float/double/string)

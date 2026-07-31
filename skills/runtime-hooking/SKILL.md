@@ -7,10 +7,6 @@ when-to-use: "Use when: runtime instrumentation — Frida hooks (native/ObjC/Jav
 
 # RE Dynamic - Hooking & Emulation
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 1. Frida Script Generator
 
 Modern API, no `--no-pause`.

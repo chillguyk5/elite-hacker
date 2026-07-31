@@ -2,14 +2,10 @@
 name: cracking-patching
 description: "Crack native binaries: DLL proxy, binary branch patching, license/trial/nag bypass, keygen serial algorithm reversal."
 risk: offensive
-when-to-use: "Use when: license/trial/nag bypass, keygen, DLL proxy, binary branch patching of a closed-source app you own/authorized. Not when: the app is server-validated (patch is pointless — check J6 first) or you lack a legitimate copy to test against."
+when-to-use: "Use when: license/trial/nag bypass, keygen, DLL proxy, binary branch patching of a closed-source app. Not when: the app is server-validated (patch is pointless — check J6 first)."
 ---
 
 # Cracking & Patching
-
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
 
 ## 0a. Recon before patching
 ```

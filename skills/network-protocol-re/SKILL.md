@@ -7,10 +7,6 @@ when-to-use: "Use when: traffic capture, TLS decryption, custom binary protocols
 
 # Network & Protocol RE
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 1. Capture — tool selection
 | Situation | Tool |
 |-----------|------|

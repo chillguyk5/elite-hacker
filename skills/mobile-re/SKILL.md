@@ -7,10 +7,6 @@ when-to-use: "Use when: Android/iOS apps — packed DEX, iOS decryption, Unity I
 
 # Mobile RE
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 1. Android DEX Dumper (packed apps)
 
 Dump DEX from a running Android app's memory. Needs the `panda-dex-dumper` binary (from P4nda0s/reverse-skills: `skills/rev-dex-dumper/panda-dex-dumper` — clone the repo to obtain it).

@@ -7,10 +7,6 @@ when-to-use: "Use when: EVM bytecode/smart contracts — disassembly, decompilat
 
 # Blockchain / Smart-Contract RE
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 1. EVM model (context)
 - Accounts (EOA/contract), each contract = bytecode + persistent **storage slots** (256-bit slots)
 - Execution input = **calldata**: 4-byte function selector + ABI-encoded args

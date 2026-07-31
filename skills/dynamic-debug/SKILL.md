@@ -7,10 +7,6 @@ when-to-use: "Use when: proving runtime behavior — x64dbg/WinDbg breakpoints, 
 
 # Dynamic Debug
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 1. x64dbg (native user-mode, Windows)
 
 Attach: `File → Attach/Open`. Keys: `F9 run · F8 step over · F7 step into · F4 run to cursor · F2 bp · Ctrl+F9 run to return · Alt+F9 run to user code`.

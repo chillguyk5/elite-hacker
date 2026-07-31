@@ -7,10 +7,6 @@ when-to-use: "Use when: native PE/ELF binaries (stripped or not), need symbols/s
 
 # RE Static - Native Binary
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 0. IDA Access — choose method (shared by D1-D3)
 
 **Option A — IDA Pro MCP (preferred if connected):** if an `ida-pro` MCP server is active, query IDA directly via MCP tools, no exported files.

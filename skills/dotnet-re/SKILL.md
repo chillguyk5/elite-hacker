@@ -7,10 +7,6 @@ when-to-use: "Use when: .NET assembly (EXE/DLL), Unity Mono games, .NET obfuscat
 
 # RE Static - .NET
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 Managed assembly (.NET EXE/DLL, Unity Mono games). Detect: `file` says ".NET assembly", PE has CLR header, imports `mscoree.dll`.
 
 ## 1. dnSpyEx — decompile / edit / debug

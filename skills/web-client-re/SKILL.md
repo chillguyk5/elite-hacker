@@ -7,10 +7,6 @@ when-to-use: "Use when: obfuscated/minified JS bundles, eval packers, WASM modul
 
 # Web Client-Side RE
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 1. JavaScript Deobfuscation
 
 Obfuscated/minified JS (webpack bundles, eval-based packers, string-array ciphers, control-flow flattening).

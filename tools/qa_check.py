@@ -36,9 +36,6 @@ for d in dirs:
         skill_ids.add(sid)
         if sid != d:
             err(f"{d}: frontmatter name '{sid}' != dir name")
-    # scope check section
-    if "## 0. Scope check" not in text:
-        err(f"{d}: missing '## 0. Scope check'")
 
 # --- 2. Cross-reference validity: Xn refs and (X) refs ---
 LETTERS = {c: s for s in os.listdir(SKILLS) for c in [""]}  # placeholder
@@ -76,8 +73,8 @@ for d in dirs:
         # known false-positive contexts:
         if let == "F" and num in (4, 7, 8, 9):
             continue  # function keys (x64dbg F4/F7/F8/F9, Windows boot F8)
-        if d == "runtime-hooking" and let in ("X", "R") and num in (7, 8, 9, 30, 86):
-            continue  # ARM64/ARM32 registers X7/X8/X30, R7/R8/R9, UC_ARCH_X86
+        if d == "runtime-hooking" and let in ("X", "R") and num in (0, 7, 8, 9, 30, 86):
+            continue  # ARM64/ARM32 registers X0/X7/X8/X30, R0/R7/R8/R9, UC_ARCH_X86
         if d == "web-api-pentest" and let in ("P", "C") and 0 <= num <= 9:
             continue  # P0-P7 phase map and C1-C5 attack-tree labels
         target = letter_map[let]
@@ -107,7 +104,7 @@ for f in glob.glob(os.path.join(ROOT, "**/*.md"), recursive=True):
     if text.count("```") % 2 != 0:
         err(f"{os.path.relpath(f, ROOT)}: unbalanced ``` fences ({text.count('```')})")
 
-# --- 5. Scope check count / no stale references ---
+# --- 5. No stale references ---
 for f in glob.glob(os.path.join(ROOT, "skills/*/SKILL.md")):
     text = open(f, encoding="utf-8").read()
     if "Authorization gate" in text:

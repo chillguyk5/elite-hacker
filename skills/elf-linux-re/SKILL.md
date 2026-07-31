@@ -7,10 +7,6 @@ when-to-use: "Use when: ELF binaries/.so on Linux — readelf/objdump/r2 analysi
 
 # ELF / Linux RE
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 1. ELF structure basics
 ```
 ELF header (ehdr)  → ELF64_Ehdr (e_ident magic \x7fELF, class, endianness)

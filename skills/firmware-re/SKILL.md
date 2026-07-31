@@ -7,10 +7,6 @@ when-to-use: "Use when: firmware images, UEFI modules, bootkits, IoT/console fir
 
 # Firmware & UEFI RE
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 1. Firmware extraction
 ```bash
 binwalk firmware.bin                       # signatures: filesystems, kernel, squashfs...

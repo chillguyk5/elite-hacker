@@ -2,16 +2,12 @@
 name: osint-recon
 description: "OSINT & recon: subdomains/cert transparency, GitHub dorking, breached-credential lookups, metadata, search dorks, active recon, tooling."
 risk: offensive
-when-to-use: "Use when: engagement start — subdomains, CT logs, GitHub dorking, breached-creds for your own data, search dorks. Not when: already deep in binary RE (skip to D/F) or targeting people (out of scope)."
+when-to-use: "Use when: engagement start — subdomains, CT logs, GitHub dorking, breached-creds lookups, metadata, search dorks, active recon. Not when: already deep in binary RE (skip to D/F)."
 ---
 
 # OSINT & Recon
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
-Passive (public records, search engines, certificate logs) needs no direct contact with the target; **active** recon (port scans, HTTP probes) touches the target — keep it on authorized scope.
+Passive (public records, search engines, certificate logs) needs no direct contact with the target; **active** recon (port scans, HTTP probes) touches the target — go active once passive intel prioritizes targets.
 
 ## 1. Subdomain & infrastructure (passive)
 
@@ -21,7 +17,7 @@ curl -s "https://crt.sh/?q=%25.example.com&output=json" | jq -r '.[].name_value'
 subfinder -d example.com -silent          # multi-source (CT, passive DNS, ...)
 amass enum -passive -d example.com        # passive only
 ```
-Cross-check with: `dnsx -l subs.txt` (resolve), SPF/DMARC records reveal mail infrastructure (`dig TXT example.com`), `whois` for org ownership, `shodan`/`censys` for exposed services on found IPs (authorized scope only).
+Cross-check with: `dnsx -l subs.txt` (resolve), SPF/DMARC records reveal mail infrastructure (`dig TXT example.com`), `whois` for org ownership, `shodan`/`censys` for exposed services on found IPs.
 
 ## 2. GitHub dorking (secret/code search)
 
@@ -48,8 +44,7 @@ Follow with `trufflehog github --org example` (scans public repos for verified s
 
 ## 4. Breached credentials & metadata
 
-- Breach lookups (for authorized analysis of your own data, or incident response): haveibeenpwned (email API), dehashed/leakcheck (paid), local breach DBs in labs
-- Never enter third-party emails into lookups without authorization — that's targeting a person
+- Breach lookups: haveibeenpwned (email API), dehashed/leakcheck (paid), local breach DBs in labs
 - Document metadata: `exiftool -a -u file.pdf` — creator, printer, GPS (photos), revision history; `pdftotext` for hidden layers; OLE extraction (`oleid`/`olevba`) for macros (malware skill M cross-ref)
 
 ## 5. Framework — passive → active
@@ -63,12 +58,11 @@ Follow with `trufflehog github --org example` (scans public repos for verified s
 
 ## 6. Toolchain
 
-subfinder/amass/dnsx (passive DNS) · crt.sh API (CT) · nuclei (template scanning on authorized scope) · httpx (fingerprint) · trufflehog/gitleaks (secrets) · exiftool (metadata) · theHarvester (emails/domains) · shodan/censys (surface, authorized). Versions: TOOLS.md.
+subfinder/amass/dnsx (passive DNS) · crt.sh API (CT) · nuclei (template scanning) · httpx (fingerprint) · trufflehog/gitleaks (secrets) · exiftool (metadata) · theHarvester (emails/domains) · shodan/censys (surface). Versions: TOOLS.md.
 
 ## 7. Anti-patterns
 
-- Port-scanning everything found passively → violates scope; passive first, active only on authorized scope
+- Port-scanning everything found passively → noise; passive first, then targeted active on prioritized targets
 - Stopping at subdomain list — resolve, fingerprint, then prioritize
 - Dorking with plain keywords → use filetype/inurl/site operators
-- Entering others' emails in breach lookups (targeting people, not systems)
 - Trusting single-source results — cross-check crt.sh vs subfinder vs DNS

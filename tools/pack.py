@@ -47,8 +47,6 @@ def validate(skill_dir):
     """Cheap per-skill sanity; full structural QA lives in tools/qa_check.py."""
     p = os.path.join(SKILLS, skill_dir, "SKILL.md")
     text = open(p, encoding="utf-8").read()
-    if "## 0. Scope check" not in text:
-        raise SystemExit(f"ERROR: {skill_dir} missing '## 0. Scope check'")
     if text.count("```") % 2:
         raise SystemExit(f"ERROR: {skill_dir} unbalanced code fences")
     fm = re.match(r"^---\n(.*?)\n---\n", text, re.S)

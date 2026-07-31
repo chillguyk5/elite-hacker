@@ -2,8 +2,6 @@
 
 A collection of self-contained offensive security + reverse engineering skills for AI coding agents. Each skill is an independent `SKILL.md` in `skills/` (Anthropic Agent Skills layout), loadable individually.
 
-> **Scope:** this collection is for lab environments you own, CTF challenges, samples you're allowed to analyze, and targets with written authorization. Every skill starts with a `## 0. Scope check` — the single stop-condition is unauthorized third-party live targets. Do not use this material against systems you do not own or lack authorization to test.
-
 ## Install
 
 ### Any agent (Anthropic Agent Skills registry — Claude Code, Cursor, Cline, Windsurf, Gemini CLI, ...)
@@ -44,7 +42,7 @@ Copy the matching `dist/<tool>/` contents into the tool's home directory (e.g. `
 
 ## Skills
 
-- **web-api-pentest** - Web/API pentest: recon, auth bypass, quota/money bugs, injection/SSRF, exploit chains, AI-gateway playbook. Lab/authorized only.
+- **web-api-pentest** - Web/API pentest: recon, auth bypass, quota/money bugs, injection/SSRF, exploit chains, AI-gateway playbook.
 - **ai-agent-pentest** - AI/agent pentest: prompt injection (direct/indirect), tool-abuse/function-call smuggling, RAG poisoning, MCP attacks, OWASP LLM Top 10.
 - **web-client-re** - Deobfuscate obfuscated/minified JavaScript (Babel AST, string-array, control-flow flattening), reverse WASM (wasm2wat/wasm-decompile), automate browsers via DevTools Protocol.
 - **binary-re** - Reverse native binaries: symbol/struct recovery from stripped binaries, IDAPython/IDALib scripting, Ghidra scripting and headless batch analysis.
@@ -184,11 +182,9 @@ Skills reference each other as `{capability-letter}{section-number}` — e.g. `F
 | W | pcap-forensics | Flow stats | Beacons | TLS/JA3 | DNS tunnel/IOC |
 | X | lab-env | Isolation | Bootstrap | Smoke tests | VM quickstarts |
 
-## A5. Scope policy
+## A5. Operating notes
 
-**Every skill in this collection starts with `## 0. Scope check`** — one line, not a gate. Targets you own (your binary/game/machine), labs, CTFs, and samples you're allowed to analyze are all in scope and need **no confirmation — proceed directly**.
-
-The single stop-condition: **unauthorized third-party live targets** (production systems, SaaS, other people's accounts or devices) → stop and flag it. Note some material targets specific widely-deployed products (e.g. the web-api-pentest New-API playbook) — those checklists are written for your own deployment or a lab instance, not for public instances belonging to others.
+Skills run as-is on live targets; keep noise low, revert state after proof, and report impact with evidence.
 
 ---
 
@@ -219,12 +215,11 @@ Skills are markdown instructions loaded into an agent context. Scale the agent s
 2. **Tool versions live in TOOLS.md** — check it before assuming a tool's CLI/flags; pin personal-repo tools (e.g. `panda-dex-dumper`) to a commit in lab-env.
 3. **MCP over exports:** prefer tool MCP servers (e.g. `ida-pro` MCP in D) over file-export workflows — direct tool access beats exported dumps.
 4. **Each subagent gets one outcome contract:** target + skill + expected output (report/PoC/symbols) + files it may touch. The orchestrator verifies, never the subagent itself.
-5. **Scope check travels with the skill:** every SKILL.md carries `## 0. Scope check` — subagents inherit it; a subagent hitting an unauthorized target must stop and report up.
+5. **Output contract:** each subagent returns a PoC with raw evidence (response/log/diff) + next steps; the orchestrator verifies, never the subagent itself.
 
 ## Contributing
 
 - One skill = one directory with a `SKILL.md` (frontmatter: `name`, `description`, `risk`, `when-to-use`).
-- Keep the `## 0. Scope check` first section of every skill.
 - Cross-references use the `{letter}{section}` scheme documented in A4.
 - Check tool status in TOOLS.md before adding new commands.
 - Run the QA check before committing: `python .qa_check.py`.

@@ -7,11 +7,7 @@ when-to-use: "Use when: defensive network analysis — beacon detection, JA3/JA4
 
 # Network Forensics (PCAP)
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
-Defensive counterpart to K (network-protocol-re): capture is usually your own network / authorized incident data.
+Defensive counterpart to K (network-protocol-re).
 
 ## 1. Flow stats — find the needle
 
@@ -72,7 +68,7 @@ for p in pkts:
         host = p["HTTP"].Host
         if host: iocs.add(host.decode() if isinstance(host, bytes) else host)
 ```
-Emit: IPs, domains, JA3 hashes, file hashes (from `tshark -Y "http.response"` + file carving), then pivot: check IOCs against VT (authorized context), hunt same IOC in other captures.
+Emit: IPs, domains, JA3 hashes, file hashes (from `tshark -Y "http.response"` + file carving), then pivot: check IOCs against VT, hunt same IOC in other captures.
 
 ## 6. TLS decryption — defensive side
 

@@ -7,10 +7,6 @@ when-to-use: "Use when: fresh machine/VM — isolation setup, toolchain bootstra
 
 # Lab Environment & Toolchain
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 1. Isolation model
 
 | Work | Host | Network |
@@ -19,7 +15,7 @@ Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allow
 | Dynamic user-mode (x64dbg, Frida, CE) | VM, snapshotted | host-only or NAT |
 | Malware detonation / sandbox | dedicated VM (FlareVM/REMnux) | **no internet egress** — FakeNet-NG/INetSim only |
 | Kernel debugging | VM + debugger VM (serial/network) | host-only |
-| Cloud / k8s attacks | host or VM | internet (authorized targets only) |
+| Cloud / k8s attacks | host or VM | internet |
 
 Rules: disposable snapshots, no host mounts or shared clipboard when detonating, one analysis per VM, revert after each sample.
 

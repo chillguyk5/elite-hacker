@@ -38,7 +38,7 @@ Single source of truth for tool versions / maintenance status. When a skill name
 | UPX | active | `upx -d` for UPX-packed | manual OEP/IAT |
 | DIE (Detect It Easy) | active | packer/protector identification | PEiD (legacy) |
 | capa | active | FLARE capability signatures | — |
-| unpac.me | active | online unpacking service — **upload only samples you own/are authorized for** | local x64dbg dump |
+| unpac.me | active | online unpacking service — upload from your analysis VM | local x64dbg dump |
 | Procmon | active | Sysinternals process monitor | — |
 | FakeNet-NG | active | network simulation for malware | INetSim |
 | CAPE sandbox | active | open-source (Cuckoo successor) | ANY.RUN (SaaS) |

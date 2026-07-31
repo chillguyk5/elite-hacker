@@ -7,10 +7,6 @@ when-to-use: "Use when: AWS/GCP/Azure — bucket enumeration, IAM over-privilege
 
 # Cloud Security
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 1. Attack surface map
 
 | Surface | Examples |
@@ -68,7 +64,7 @@ Obtained role creds → `aws sts get-caller-identity` → scope via `cloudfox`/`
 
 ## 6. Methodology
 
-1. **Scope first (mandatory):** only your own accounts/org, lab accounts, or written authorization. Cloud attacks can burn real money (spinning instances) and touch shared infra.
+1. **Budget-aware:** cloud attacks burn real money (spinning instances) — use a sandbox org with budget alerts on; revert every state change.
 2. Enumerate: storage buckets → exposed services → leaked keys (V) → IAM posture (`prowler`)
 3. Chain: leaked key → enumerate roles → assume role → admin/data
 4. Prove: read one object / one secret, screenshot; revert any state changes (delete created objects, terminate instances)
@@ -84,4 +80,4 @@ prowler (assessment) · cloudfox (attack paths) · pacu (exploitation, AWS) · s
 - Forgetting IMDSv2 token flow → false "no metadata access"
 - Stopping at "bucket public" — always try to read objects and escalate
 - Neglecting user-data as a secret source (IMDSv1-off boxes)
-- Running prowler/pacu on an account you don't own
+- Forgetting budget alerts before spinning up instances

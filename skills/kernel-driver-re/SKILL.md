@@ -7,10 +7,6 @@ when-to-use: "Use when: Windows drivers (WDM/WDF), kernel debugging, rootkit ide
 
 # Kernel & Driver RE
 
-## 0. Scope check
-
-Target is your own (binary/game/machine), a lab, a CTF, or a sample you're allowed to analyze → proceed, no confirmation needed. Unauthorized third-party live targets (prod, SaaS, others' accounts) → stop; policy in README A5.
-
 ## 1. Windows driver model (WDM/WDF)
 A driver is a PE with `DRIVER_ENTRY` export. Entry: build a `DRIVER_OBJECT`, register dispatch routines:
 ```c
